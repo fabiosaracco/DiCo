@@ -1,5 +1,5 @@
 # DiCo
-The list of function are intended to extract discursive communities from a Twitter thematic dataset (v2).
+The list of function is intended to extract discursive communities from a Twitter thematic dataset (v2).
 See HowTo to see how the code works.
 
 # ToDo
