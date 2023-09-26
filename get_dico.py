@@ -62,10 +62,13 @@ def get_dico(rtn_el, memb_dict, rounds=100):
         # the annotated verified users should mantain the same label
         _translator={}
         for wfl in where_fixed_labels:
+            # remember that we added 1 to all labels, actually without any reason
+            # but for the fact that igraph returned a Segmentation Fault 
+            # (probably a bad update of label propagation)
             if memba[wfl] in _translator.keys():
-                assert _translator[memba[wfl]]==labels[wfl]
+                assert _translator[memba[wfl]]==labels[wfl]-1
             else:
-                _translator[memba[wfl]]=labels[wfl]
+                _translator[memba[wfl]]=labels[wfl]-1
         
         for j in range(len(ug.vs)):
             _membership[i,j]=_translator.get(memba[j], -1)    
