@@ -41,7 +41,7 @@ def get_dico(rtn_el, memb_dict, rounds=100):
     fixed_labels=[memb_dict.get(i, -1)>=0 for i in rtn.vs['name']]
     # for some reasons, python-igraph doesn't like anymore having negative numbers for unassigned labels.
     # the code should be fixed accordingly
-    labels=[1+memb_dict.get(i, -1) for i in rtn.vs['name']]
+    labels=[memb_dict.get(i, -1) for i in rtn.vs['name']]
     # the "1" in the following line should have been "0" in a perfect world, 
     # nevertheless python-igraph changed idea about the sign of unassigned labels (see above)
     where_fixed_labels=[i for i in range(len(rtn.vs)) if labels[i]>=1]
@@ -66,9 +66,9 @@ def get_dico(rtn_el, memb_dict, rounds=100):
             # but for the fact that igraph returned a Segmentation Fault 
             # (probably a bad update of label propagation)
             if memba[wfl] in _translator.keys():
-                assert _translator[memba[wfl]]==labels[wfl]-1
+                assert _translator[memba[wfl]]==labels[wfl]
             else:
-                _translator[memba[wfl]]=labels[wfl]-1
+                _translator[memba[wfl]]=labels[wfl]
         
         for j in range(len(ug.vs)):
             _membership[i,j]=_translator.get(memba[j], -1)    
