@@ -44,7 +44,7 @@ def get_dico(rtn_el, memb_dict, rounds=100):
     labels=[memb_dict.get(i, -1) for i in rtn.vs['name']]
     # the "1" in the following line should have been "0" in a perfect world, 
     # nevertheless python-igraph changed idea about the sign of unassigned labels (see above)
-    where_fixed_labels=[i for i in range(len(rtn.vs)) if labels[i]>=1]
+    where_fixed_labels=[i for i in range(len(rtn.vs)) if labels[i]>=0]
     # make 'rounds' number of iteration of the label propagation
     _membership=np.zeros((rounds,len(rtn.vs)), dtype='i4')
     # the conversion to undirected is intended to overcome the issue due to giving labels to unverified accounts
